@@ -2,23 +2,29 @@ package org.example;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 
-@Component
-@Scope("prototype")
 public class Person {
-    @Value("${person2.name}")
-    private String name;
-    @Value("${person2.age}")
-    private String age;
-    @Autowired
-    @Qualifier("cat")
     private Animal animal;
+    private String name;
+    private int age;
+
+    public Person() {
+    }
+
+    public Person(Panda panda) {
+
+    }
+
+    public Person(Animal animal, String name, int age) {
+        this.animal = animal;
+        this.name = name;
+        this.age = age;
+    }
+
+
 }

@@ -1,27 +1,19 @@
 package org.example;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class App{
     public static void main( String[] args ){
-        AnnotationConfigApplicationContext context =
-                new AnnotationConfigApplicationContext(MyConfig.class);
+
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        Person person = context.getBean("animal", Person.class);
+        System.out.println(person);
 
 
-        Person person2 = context.getBean("person",Person.class);
-
-        Person person = context.getBean("person",Person.class);
-
-        Lion lion = new Lion("Lion","Gray","15");
-        person.setName("Bema");
-        person.setAge("19");
-        person.setAnimal(lion);
-
-        System.out.println(person2.getName() + " " + person2.getAge() + " "+ person2.getAnimal());
-
-
-        System.out.println(person.getName()+" "+person.getAge()+" "+person.getAnimal());
-
+        Person person1 = context.getBean("animal1", Person.class);
+        System.out.println(person1);
 
         context.close();
 

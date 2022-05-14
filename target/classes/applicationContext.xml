@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="org.example"/>
+
+    <context:property-placeholder location="app.properties"/>
+
+    <bean id = "panda" class="org.example.Panda" init-method="animalPlus" destroy-method="animalMinus">
+        <property name="name" value="${animal.name}"/>
+        <property name="color" value="${animal.color}"/>
+        <property name="age" value="${animal.age}"/>
+
+    </bean>
+    <bean id = "cat" class="org.example.Cat" init-method="animalPlus" destroy-method="animalMinus">
+        <property name="name" value="${animal1.name}"/>
+        <property name="color" value="${animal1.color}"/>
+        <property name="age" value="${animal1.age}"/>
+
+    </bean>
+
+    <bean id="animal" class="org.example.Person">
+        <property name="name" value="${person1.name}"/>
+        <property name="age" value="${person1.age}"/>
+        <property name="animal" ref="cat"/>
+
+    </bean>
+
+    <bean id="animal1" class="org.example.Person">
+        <property name="name" value="${person2.name}"/>
+        <property name="age" value="${person2.age}"/>
+        <property name="animal" ref="panda"/>
+
+    </bean>
+
+</beans>
